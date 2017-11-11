@@ -11,6 +11,11 @@
     </header>
     <a href="/trips/<%=@trip.id%>/categories" class="load_categories">See Categories</a>
 
+    <button id="more-<%=@trip.id%>-trip" class="js-more" data-id="<%=@trip.id %>" onclick="moreInfo(this)">Show Categories</button> </br>
+
+      <ul id="tripCatShow-<%=@trip.id%>">
+      </ul>
+
     <ul class="categories">
     </ul>
     <ul class="newCategory">

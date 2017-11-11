@@ -1,3 +1,24 @@
+function moreInfo(element){
+  var id = element.dataset.id
+  $.get('/trips/' + id + '.json', function(data){
+    var categories= data["categories"]
+    var catList = ""
+    for (var i = 0; i < categories.length; i++){
+      catList += "<li>" + "<b>" + "Name:" + "</b>" + " " + categories[i]["name"] + " " + "|" + "</li>"
+    }
+    $("#tripCatShow-" +id).html(catList)
+  })
+  $("#more-" + id + "-trip").replaceWith(`<button id="hide-${id}-trip" class="js-hide" data-id="${id}" onClick= hideInfo(this)>Hide</button>`)
+}
+
+function hideInfo(element){
+  var id = element.dataset.id
+  $("#tripCatShow-"+id).html("")
+  $(`#hide-${id}-trip`).replaceWith(`<button id="more-${id}-trip"
+  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Categories</button>`)
+}
+
+
 $(function() {
   $('.js-next').on('click', function() {
     const currentId = parseInt($(".js-next").attr("data-id"))

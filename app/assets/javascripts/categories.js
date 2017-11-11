@@ -1,17 +1,17 @@
-$(function() {
-  $("a.load_categories").on("click", function(e) {
-    $.get(this.href, function (categories) {
-      categories.forEach(function(category) {
-        const oneCategory = new Category(category)
-        const categoryHTML = oneCategory.formatCategory()
-        $(".categories").append(categoryHTML)
-      })
-    });
+//$(function() {
+//  $("a.load_categories").on("click", function(e) {
+//    $.get(this.href, function (categories) {
+//      categories.forEach(function(category) {
+//        const oneCategory = new Category(category)
+//        const categoryHTML = oneCategory.formatCategory()
+//        $(".categories").append(categoryHTML)
+//      })
+//    });
     //to prevent multiple renderings on recipe show page
-    $("a.load_categories").attr("href", "");
-    e.preventDefault();
-  })
-})
+//    $("a.load_categories").attr("href", "");
+//    e.preventDefault();
+//  })
+//})
 
 // JS Constructor - creates an Category object
 function Category(category) {
