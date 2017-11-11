@@ -15,7 +15,6 @@ $(function() {
 
     // change href of "Edit Trip"
     //const newHref = $(".edit_trip").attr("href", `/trips/${nextId}/edit`)
-    $(".edit_trip").attr("href", `/trips/${nextId}/edit`)
   })
 })
 
@@ -51,5 +50,7 @@ Trip.prototype.renderNext = function() {
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
   $(".user_link").attr("href", `/users/${this.user.id}`)
+  $(".edit_trip").attr("href", `/trips/${this.id}/edit`)
+  $(".delete_trip").attr("href", `/trips/${this.id}`)
 
 }

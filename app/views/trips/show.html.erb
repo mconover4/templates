@@ -21,7 +21,7 @@
 
 
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
-      <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, :class => "delete_trip", data: { confirm: 'Are you sure?' } %></td>
 
       <%= form_for @trip do |f|  %>
       <%= f.fields_for :categories, @trip.categories.build do |categories_fields| %>
