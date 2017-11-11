@@ -1,3 +1,11 @@
+<button class="showTrips" data-id="<%= user.id%>">Show Trips</button>
+
+<div class="userTrips">
+</div>
+
+<button id="more-<%=user.id%>-user" class="js-more" data-id="<%= user.id %>" onclick="moreInfo(this)">Show Trips</button> </br>
+  <ul id="userShow-<%=user.id%>"> </ul>
+
 <h3> Trips by <%= user.name %></h3>
 <% user.trips.each do |trip| %>
   <h4><strong>-「<%= link_to trip.name.capitalize, user_trip_path(user, trip) %>」</strong> <em>under:</em>
