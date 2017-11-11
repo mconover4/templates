@@ -1,10 +1,13 @@
 function moreInfo(element){
-  var id = element.dataset.id
-  $.get('/trips/' + id + '.json', function(data){
+  var id = parseInt(element.dataset.id)
+  const nextId = id + 1
+  //const id = parseInt($(".js-next").attr("data-id"))
+  //const nextId = id + 1
+  $.get('/trips/' + nextId + '.json', function(data){
     var categories= data["categories"]
     var catList = ""
     for (var i = 0; i < categories.length; i++){
-      catList += "<li>" + "<b>" + "Name:" + "</b>" + " " + categories[i]["name"] + " " + "|" + "</li>"
+      catList += "<li>" + categories[i]["name"] + " " + "</li>"
     }
     $("#tripCatShow-" +id).html(catList)
   })
