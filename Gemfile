@@ -8,8 +8,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pry-rails'
-gem 'clearance', '~> 1.11'
-gem 'pundit'
 gem 'active_model_serializers'
 gem "dynamic_form"
 gem 'jquery-rails'
