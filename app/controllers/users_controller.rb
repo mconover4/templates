@@ -51,6 +51,10 @@ class UsersController < ApplicationController
   def trips
     @user = User.find(params[:id])
     @trips = @user.trips
+    respond_to do |f|
+      f.html {render :index}
+      f.json{render json: @trips}
+    end
   end
 
   def edit

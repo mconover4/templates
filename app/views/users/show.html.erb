@@ -23,11 +23,11 @@
         	<img src="https://images.unsplash.com/photo-1491317079341-38313806b657?w=750&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
     		</div>
 			</div>
-				<div class="6u 12u$(xsmall)">
-					<% if @user.role == 'planner' || @user.role == 'admin' %>
-						<%= render partial: 'show', locals: {user: @user}  %>
-					<% end %>
-				</div>
 			</div>
+
+				<%# if @user.role == 'planner' || @user.role == 'admin' %>
+					<%= render partial: 'show', locals: {user: @user}  %>
+				<%# end %>
+
 		</div>
 </section>

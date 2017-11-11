@@ -1,16 +1,17 @@
 function moreInfo(element){
   var id = element.dataset.id
-  $.get('/users/' + id + '.json', function(data){
-    var trips = data["trips"]
+  $.get('/users/' + id + '/trips' +'.json', function(data){
+    var trips = data
     var infoList = ""
     for (var i = 0; i < trips.length; i++){
-      infoList += "<li>" + "<b>" + "Name:" + "</b>" + " " + trips[i]["name"] + " " + "|" +
-      "<b>" + " Description:" + "</b>" + " " + trips[i]["content"] + " " + "|" +
-      "<b>" + " Categories:" + "</b>" + " " + trips[i]["categories"] + " " + "|" + "</li>"
+      let tripLink = "/trips/trip[i]['id']"
+      infoList += "<li>" + "<h4>" + "Title:" + " " + "<a href='${tripLink}'>" + trips[i]["name"] + "</a>" + "</h4>" + " " +
+      "<b>" + " Categories:" + "</b>" + " " + trips[i]["categories"][i]["name"] + " " + "<br>" +
+      "<b>" + " Content:" + "</b>" + " " + trips[i]["content"] + " " + "</li>"
     }
     $("#userShow-" +id).html(infoList)
   })
-  $("#more-" + id + "-user").replaceWith(`<button id="hide-${id}-user" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Info</button>`)
+  $("#more-" + id + "-user").replaceWith(`<button id="hide-${id}-user" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Trips</button>`)
 }
 
 function hideInfo(element){
