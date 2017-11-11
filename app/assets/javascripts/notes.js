@@ -32,6 +32,14 @@ $(function() {
   })
 })
 
+// JS Constructor - creates a Recipe object
+function Trip(attributes) {
+  this.id = attributes.id
+  this.name = attributes.name
+  this.categories = attributes.categories
+  this.content = attributes.content
+  this.user = attributes.user
+}
 // Prototype methods
 Trip.prototype.formatLink = function() {
   let tripHTML = `<a href="/trips/${this.id}" data-id=${this.id}>${this.name}</a><br>`

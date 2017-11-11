@@ -5,6 +5,10 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.all
+    respond_to do |f|
+      f.html {render :index}
+      f.json{render json: @trips}
+    end
   end
 
   def new
@@ -25,6 +29,10 @@ class TripsController < ApplicationController
   end
 
   def show
+    respond_to do |f|
+     f.html {render :show}
+     f.json{render json: @trip}
+   end
   end
 
   def edit

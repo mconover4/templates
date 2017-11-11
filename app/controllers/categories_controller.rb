@@ -4,8 +4,6 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
     @categories = Category.all
-    @trip_category = TripCategory.new
-
   end
 
   def create
