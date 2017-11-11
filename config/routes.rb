@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/main'
   get 'home/sample'
   get 'users/types'
+  get '/trips/:id/categories', to: 'trips#categories'
   delete 'logout' => 'sessions#destroy'
   resources :trips
   resources :users
