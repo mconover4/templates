@@ -16,15 +16,11 @@ $(function() {
       trip.renderNext()
     })
 
-    //empty previous trip's items, old + new
-    $(".items").html("")
-    $(".newItem").html("")
-
     // change attribute to sift to next trip
     $(".js-next").attr("data-id", nextId)
 
     // change href of tripName
-    $(".tripName").attr("href", `/trip/${nextId}`)
+    $(".tripName").attr("href", `/trips/${nextId}`)
 
     // change href of "Edit Trip"
     const newHref = $(".edit_trip").attr("href").replace(currentId, nextId)
@@ -46,9 +42,21 @@ Trip.prototype.formatLink = function() {
   return tripHTML
 }
 
+function parseJson(object){
+    object.forEach(function(key) {
+      console.log(key.name);
+      return `Name: ${key.name}`
+    });
+}
+
 Trip.prototype.renderNext = function() {
+  //let categoriesNames = jQuery.each(this.categories, function(i, val) {
+  //  $("#" + i).append(document.createTextNode(" - " + val));
+//  });
+  let categoriesNames = parseJson(this.categories);
+
 	$(".tripName").text(this.name)
-	$(".tripCategories").text(this.categories)
+	$(".tripCategories").html(categoriesNames)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
 }

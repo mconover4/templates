@@ -2,11 +2,11 @@
   <div class="container">
 		<header class="major special">
       <button class="js-next" data-id="<%= @trip.id%>">Next Trip</button>
-			<h2 class="tripName">Trip.<%= @trip.name %></h2>
-      <p class="tripCategories">Filed under: <% @trip.categories.each do |category| %>
+			<h2>Trip.<bdi class="tripName"><%= @trip.name %></bdi></h2>
+      <p>Filed under: <bdi class="tripCategories"><% @trip.categories.each do |category| %>
           <%= link_to category.name,  trip_category_path(@trip, category) if @trip.category_ids %> |
-        <% end %></p>
-			<p class="tripUser">Creator: <%= link_to @trip.user.name, user_path(@trip.user) %></p>
+        <% end %></bdi></p>
+			<p>Creator: <bdi class="tripUser"><%= link_to @trip.user.name, user_path(@trip.user) %></bdi></p>
     </header>
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
     <p class="tripContent"> <%= @trip.content %> </p>
