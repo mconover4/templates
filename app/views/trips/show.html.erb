@@ -1,16 +1,17 @@
 <section id="main" class="wrapper">
   <div class="container">
 		<header class="major special">
-			<h2>Trip.<%= @trip.name %></h2>
-      <p>Filed under: <% @trip.categories.each do |category| %>
+      <button class="js-next" data-id="<%= @trip.id%>">Next Trip</button>
+			<h2 class="tripName">Trip.<%= @trip.name %></h2>
+      <p class="tripCategories">Filed under: <% @trip.categories.each do |category| %>
           <%= link_to category.name,  trip_category_path(@trip, category) if @trip.category_ids %> |
         <% end %></p>
-			<p>Creator: <%= link_to @trip.user.name, user_path(@trip.user) %></p>
+			<p class="tripUser">Creator: <%= link_to @trip.user.name, user_path(@trip.user) %></p>
     </header>
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
-    <p> <%= @trip.content %> </p>
+    <p class="tripContent"> <%= @trip.content %> </p>
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
-      <td><%= link_to "Edit", edit_trip_path(@trip) %> | <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </div>
 </section>
