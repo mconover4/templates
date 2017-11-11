@@ -1,12 +1,3 @@
-//$(document).ready(function(){
-//  attachListeners()
-//})
-
-//function moreInfo(element){}
-//function hideInfo(element){}
-//function nextTrip(){}
-
-//Sift Through Trips
 $(function() {
   $('.js-next').on('click', function() {
     const currentId = parseInt($(".js-next").attr("data-id"))
@@ -16,17 +7,15 @@ $(function() {
       trip.renderNext()
     })
 
-    // change attribute to sift to next trip
     $(".js-next").attr("data-id", nextId)
 
     // change href of tripName
     $(".tripName").attr("href", `/trips/${nextId}`)
 
-    $(".user_link").attr("href", `/users/${this.user.id}`)
 
     // change href of "Edit Trip"
-    const newHref = $(".edit_trip").attr("href").replace(currentId, nextId)
-    $(".edit_trip").attr("href", newHref)
+    //const newHref = $(".edit_trip").attr("href", `/trips/${nextId}/edit`)
+    $(".edit_trip").attr("href", `/trips/${nextId}/edit`)
   })
 })
 
@@ -61,4 +50,6 @@ Trip.prototype.renderNext = function() {
 	$(".tripCategories").text(categoriesNames)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
+  $(".user_link").attr("href", `/users/${this.user.id}`)
+
 }
