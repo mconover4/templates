@@ -1,17 +1,27 @@
 <section id="main" class="wrapper">
   <div class="container">
+    <button class="js-next" data-id="<%= @trip.id%>">Next Trip</button>
 		<header class="major special">
-      <button class="js-next" data-id="<%= @trip.id%>">Next Trip</button>
+
 			<h2>Trip.<bdi class="tripName"><%= @trip.name %></bdi></h2>
       <p>Filed under: <bdi class="tripCategories"><% @trip.categories.each do |category| %>
           <%= link_to category.name,  trip_category_path(@trip, category) if @trip.category_ids %> |
         <% end %></bdi></p>
-			<p>Creator: <bdi class="tripUser"><%= link_to @trip.user.name, user_path(@trip.user) %></bdi></p>
+			<p>Creator: <bdi class="tripUser"><%= link_to @trip.user.name, user_path(@trip.user), :class => "user_link" %></bdi></p>
     </header>
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
     <p class="tripContent"> <%= @trip.content %> </p>
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
       <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      <%= form_for @trip_category do |f|  %>
+        <%= f.hidden_field :trip_id, value: @trip.id %>
+        <%= f.label :name %><br>
+        <%= f.text_area :name %><br>
+
+        <%= submit_tag "Submit", :data => { disable_with: false }, :class => "new_category" %><br>
+      <% end %>
+
     <% end %>
   </div>
 </section>

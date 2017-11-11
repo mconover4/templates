@@ -22,6 +22,8 @@ $(function() {
     // change href of tripName
     $(".tripName").attr("href", `/trips/${nextId}`)
 
+    $(".user_link").attr("href", `/users/${this.user.id}`)
+
     // change href of "Edit Trip"
     const newHref = $(".edit_trip").attr("href").replace(currentId, nextId)
     $(".edit_trip").attr("href", newHref)
@@ -56,7 +58,7 @@ Trip.prototype.renderNext = function() {
   let categoriesNames = parseJson(this.categories);
 
 	$(".tripName").text(this.name)
-	$(".tripCategories").html(categoriesNames)
+	$(".tripCategories").text(categoriesNames)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
 }
