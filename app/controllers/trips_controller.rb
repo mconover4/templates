@@ -29,6 +29,8 @@ class TripsController < ApplicationController
   end
 
   def show
+    @newCategory = Category.new(category_params)
+    @trip.categories << @newCategory
     respond_to do |f|
      f.html {render :show}
      f.json{render json: @trip}
@@ -70,6 +72,10 @@ class TripsController < ApplicationController
 
   def require_planner
      return head(:forbidden) unless current_user.role == 'planner' || current_user.role == 'admin'
+   end
+
+   def category_params
+     params.require(:category).permit(:id, :name)
    end
 
 end

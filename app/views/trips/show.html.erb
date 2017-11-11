@@ -14,10 +14,11 @@
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
       <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-      <%= form_for @trip_category do |f|  %>
-        <%= f.hidden_field :trip_id, value: @trip.id %>
-        <%= f.label :name %><br>
-        <%= f.text_area :name %><br>
+      <%= form_for ([@trip, @newCategory]) do |f|  %>
+      <%= f.fields_for :categories, @trip.categories.build do |categories_fields| %>
+        <%= f.label :category, "Create Category" %>
+        <%= categories_fields.text_field :name, placeholder: "categorize it"%>
+      <% end %>
 
         <%= submit_tag "Submit", :data => { disable_with: false }, :class => "new_category" %><br>
       <% end %>
