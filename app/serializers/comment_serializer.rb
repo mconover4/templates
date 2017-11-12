@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :text
-  #belongs_to :trip
+  attributes :id, :text, :trip
+  belongs_to :trip
   # belongs_to :user
 end
