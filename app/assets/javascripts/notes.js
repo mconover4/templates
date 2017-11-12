@@ -95,7 +95,7 @@ $(function() {
     $('.new_category').submit(function(event) {
       event.preventDefault();
       var values = $(this).serialize();
-      var posting = $.post('/categories', values);
+      var posting = $.post('/trip', values);
       posting.done(function(data) {
         var category = data;
         $("#categorytName").text(category["name"]);

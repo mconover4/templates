@@ -15,17 +15,13 @@
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
     <p class="tripContent"> <%= @trip.content %> </p>
 
-
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
       <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, :class => "delete_trip", data: { confirm: 'Are you sure?' } %></td>
 
-      <%= form_for @trip do |f|  %>
-      <%= f.fields_for :categories, @trip.categories.build do |categories_fields| %>
-        <%= f.label :category, "Create Category" %>
-        <%= categories_fields.text_field :name, placeholder: "categorize it"%>
-      <% end %>
-
-        <%= submit_tag "Submit", :class => "new_category" %><br>
+      <%= form_for @category  do |f|  %>
+        <%= f.label :name, "Create Category" %>
+        <%= f.text_field :name, placeholder: "categorize it"%>
+        <%= submit_tag "Submit", :data => { disable_with: false }, :class => "new_category" %><br>
       <% end %>
 
     <% end %>
