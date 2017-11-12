@@ -1,4 +1,4 @@
-function moreInfo(element){
+function showTrips(element){
   var id = element.dataset.id
   $.get('/users/' + id + '/trips' +'.json', function(data){
     var trips = data
@@ -6,7 +6,7 @@ function moreInfo(element){
     for (var i = 0; i < trips.length; i++){
       let tripLink = "/trips/trip[i]['id']"
       infoList += "<li>" + "<h4>" + "Title:" + " " + "<a href='${tripLink}'>" + trips[i]["name"] + "</a>" + "</h4>" + " " +
-      "<b>" + " Categories:" + "</b>" + " " + trips[i]["categories"][i]["name"] + " " + "<br>" +
+      "<b>" + " Categories:" + "</b>" + " " + trips[i]["categories"][0]["name"] + ", " + trips[i]["categories"][1]["name"] + "<br>" +
       "<b>" + " Content:" + "</b>" + " " + trips[i]["content"] + " " + "</li>"
     }
     $("#userShow-" +id).html(infoList)
@@ -18,5 +18,5 @@ function hideInfo(element){
   var id = element.dataset.id
   $("#userShow-"+id).html("")
   $(`#hide-${id}-user`).replaceWith(`<button id="more-${id}-user"
-  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Trips</button>`)
+  class="js-more" data-id="${id}" onclick="showTrips(this)">Show Trips</button>`)
 }

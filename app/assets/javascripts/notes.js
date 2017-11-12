@@ -1,25 +1,25 @@
-function moreInfo(element){
-  var id = parseInt(element.dataset.id)
-  const nextId = id + 1
+//function moreInfo(element){
+//  var id = parseInt(element.dataset.id)
+//  const nextId = id + 1
   //const id = parseInt($(".js-next").attr("data-id"))
   //const nextId = id + 1
-  $.get('/trips/' + nextId + '.json', function(data){
-    var categories= data["categories"]
-    var catList = ""
-    for (var i = 0; i < categories.length; i++){
-      catList += "<li>" + categories[i]["name"] + " " + "</li>"
-    }
-    $("#tripCatShow-" +id).html(catList)
-  })
-  $("#more-" + id + "-trip").replaceWith(`<button id="hide-${id}-trip" class="js-hide" data-id="${id}" onClick= hideInfo(this)>Hide</button>`)
-}
+//  $.get('/trips/' + nextId + '.json', function(data){
+//    var categories= data["categories"]
+//    var catList = ""
+//    for (var i = 0; i < categories.length; i++){
+//      catList += "<li>" + categories[i]["name"] + " " + "</li>"
+  //  }
+//    $("#tripCatShow-" +id).html(catList)
+//  })
+//  $("#more-" + id + "-trip").replaceWith(`<button id="hide-${id}-trip" class="js-hide" data-id="${id}" onClick= hideInfo(this)>Hide</button>`)
+//}
 
-function hideInfo(element){
-  var id = element.dataset.id
-  $("#tripCatShow-"+id).html("")
-  $(`#hide-${id}-trip`).replaceWith(`<button id="more-${id}-trip"
-  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Categories</button>`)
-}
+//function hideInfo(element){
+//  var id = element.dataset.id
+//  $("#tripCatShow-"+id).html("")
+//  $(`#hide-${id}-trip`).replaceWith(`<button id="more-${id}-trip"
+//  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Categories</button>`)
+//}
 
 
 $(function() {
@@ -30,15 +30,8 @@ $(function() {
       const trip = new Trip(tripJSON);
       trip.renderNext()
     })
-
     $(".js-next").attr("data-id", nextId)
-
-    // change href of tripName
     $(".tripName").attr("href", `/trips/${nextId}`)
-
-
-    // change href of "Edit Trip"
-    //const newHref = $(".edit_trip").attr("href", `/trips/${nextId}/edit`)
   })
 })
 
@@ -76,5 +69,4 @@ Trip.prototype.renderNext = function() {
   $(".user_link").attr("href", `/users/${this.user.id}`)
   $(".edit_trip").attr("href", `/trips/${this.id}/edit`)
   $(".delete_trip").attr("href", `/trips/${this.id}`)
-
 }
