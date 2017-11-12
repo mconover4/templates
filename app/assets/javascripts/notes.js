@@ -116,9 +116,18 @@ $(function() {
     });
     //to prevent multiple renderings on recipe show page
     $("a.load_comments").attr("href", "");
+    $(".load_comments").replaceWith(`<a href="#" class="load_comments"
+     data-id="${this.id}" onClick=hideComments(this)>Hide Comments</a>`)
     e.preventDefault();
   })
 })
+
+function hideComments(element){
+  var id = element.dataset.id
+  $(".load_comments").html("")
+  $(".hide_button").replaceWith(`<a href="/trips/${this.id}/comments" class="load_comments"
+   data-id="${this.id}">See Comments</a>`)
+}
 
 // JS Constructor - creates an Comment object
 function Comment(comment) {
@@ -128,7 +137,7 @@ function Comment(comment) {
 }
 // Prototype method
 Comment.prototype.formatComment = function() {
-  commentHTML = `<li data-id=${this.id}><b>${this.trip.name}:</b> ${this.text}</li>`
+  commentHTML = `<li data-id=${this.id}><b>${this.trip.name}:</b> ${this.text} <em class="delete-comment" data=${this.id}>Delete</em> </li>`
   return commentHTML
 }
 
@@ -150,11 +159,21 @@ $(function() {
       }
       // empty fields
       $("#comment_text").val("");
-      $("#submit").html("")
-      //$("#form")[0].reset();
-      //$("#form").unbind("submit");
     });
     e.preventDefault();
-    $('#form').unbind("submit");
     })
  })
+
+ $(function() {
+   $(".delete_comment").on("click", function(e){
+   var commentId = element.attributes["data"].value
+  $.ajax({
+    url: '/comments/' +commentId,
+    type: 'DELETE',
+    success: function(result){
+      $("#comment-"+result["id"]).replaceWith("")
+    }
+  })
+  e.preventDefault();
+})
+})
