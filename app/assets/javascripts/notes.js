@@ -3,6 +3,7 @@
 })
 */
 // Load Categories
+/*
 $(function() {
   $("a.load_categories").on("click", function(e) {
     const id = parseInt($(".load_categories").attr("data-id"))
@@ -21,6 +22,32 @@ $(function() {
   })
 })
 
+$(function() {
+  $("a.load_categories").on("click", function(e) {
+    $.get(this.href, function (categories) {
+      categories.forEach(function(category) {
+        const oneCategory = new Category(category)
+        const categoryHTML = oneCategory.formatCategory()
+        $(".categories").append(categoryHTML)
+      })
+    });
+    $("a.load_categories").attr("href", "");
+    e.preventDefault();
+  })
+})
+
+// JS Constructor
+function Category(category) {
+  this.id = category.id
+  this.name = category.name
+}
+
+Category.prototype.formatCategory = function() {
+  categoryHTML = `<li data-id=${this.id}> ${this.name} </li>`
+  return categoryHTML
+}
+*/
+
 // Next Trip
 $(function() {
   $('.js-next').on('click', function() {
@@ -35,7 +62,7 @@ $(function() {
     $(".js-next").attr("data-id", nextId)
     $(".tripName").attr("href", `/trips/${nextId}`)
    $(".load_categories").attr("href", `${nextId}/categories`)
-   (".load_comments").attr("href", `${nextId}/comments`)
+   $(".load_comments").attr("href", `${nextId}/comments`)
    const newAction = $(".new_comment").attr("action").replace(currentId, nextId)
    $(".new_comment").attr("action", newAction)
   })
@@ -69,17 +96,17 @@ Trip.prototype.renderNext = function() {
 //  });
 const categoriesNames = this.categories;
 function parseJson(categoriesNames){
-    object.forEach(function(key) {
-      console.log(key.name);
-      let categoriesList = `Name: ${key.name}`
-      return categoriesList
-    });
+  catsList = "<p>"
+  for (var i = 0; i < categoriesNames.length; i++){
+    catsList += " " + categoriesNames[i]["name"] + " " + "|"
+  }
+  catsList += "</p>"
 }
-
+parseJson(categoriesNames);
   //categoriesNames += categoriesList
 
 	$(".tripName").text(this.name)
-	$(".tripCategories").text(categoriesList)
+	$(".tripCategories").html(`<li>${catsList}</li>`)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
   $(".user_link").attr("href", `/users/${this.user.id}`)
