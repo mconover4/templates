@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     resources :trips, only: [:new, :edit, :show]
   end
 
-  resources :trips, only: [:new, :show] do
-    resources :categories, only: [:new, :show]
+  resources :trips, except: [:destroy] do
+    resources :categories
   end
 
   resources :categories
