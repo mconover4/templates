@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      binding.pry
       render json: @category
       #redirect_to categories_path
     else
@@ -40,7 +39,7 @@ class CategoriesController < ApplicationController
 
 private
 def category_params
-  params.require(:category).permit(:id, :name)
+  params.require(:category).permit(:id, :name, trips_attributes: [:id])
 end
 
 end

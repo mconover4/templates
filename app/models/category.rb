@@ -5,4 +5,8 @@ class Category <  ActiveRecord::Base
 
   validates :name, presence: true
 
+  def trips_attributes=(trip_attribute)
+    self.trips.ids << trip_attribute.id
+  end
+
 end

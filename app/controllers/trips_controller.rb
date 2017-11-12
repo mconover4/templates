@@ -32,6 +32,8 @@ class TripsController < ApplicationController
     respond_to do |format|
       @categories = @trip.categories
       @category = @trip.categories.build
+      #@category.trips_attributes = @trip
+
       format.html { render :show }
       format.json { render json: @trip }
 	  end
