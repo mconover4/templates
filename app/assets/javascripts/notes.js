@@ -1,3 +1,7 @@
+/* $(document).ready(function(){
+  attachListeners()
+})
+*/
 //function moreInfo(element){
 //  var id = parseInt(element.dataset.id)
 //  const nextId = id + 1
@@ -48,8 +52,15 @@ $(function() {
       const trip = new Trip(tripJSON);
       trip.renderNext()
     })
+    $(".comments").html("")
+    $(".newComment").html("")
     $(".js-next").attr("data-id", nextId)
     $(".tripName").attr("href", `/trips/${nextId}`)
+    // change href of "See The Comments"
+   $(".load_categories").attr("href", `${nextId}/categories`)
+   // change action of New Comment form
+   const newAction = $(".new_comment").attr("action").replace(currentId, nextId)
+   $(".new_comment").attr("action", newAction)
   })
 })
 
@@ -87,70 +98,60 @@ Trip.prototype.renderNext = function() {
   $(".user_link").attr("href", `/users/${this.user.id}`)
   $(".edit_trip").attr("href", `/trips/${this.id}/edit`)
   $(".delete_trip").attr("href", `/trips/${this.id}`)
+  $(".load_comments").attr("href", `/trips/${this.id}/comments`)
+  $(".comments").html("")
   $(".load_categories").attr("href", `/trips/${this.id}/categories`)
   $(".categories").html("")
 }
 
-//$(function() {
-//    $('.new_category').submit(function(event) {
-//      event.preventDefault();
-//      var values = $(this).serialize();
-//      var posting = $.post('/trip', values);
-//      posting.done(function(data) {
-//        var category = data;
-//        $("#categorytName").text(category["name"]);
-//      });
-//    });
-//  });
 
-
-function createNewComment(element){
-  var values= $(element).serialize()
-  var posting = $.post('/comments', values)
-
-  posting.done(function(comment) {
-        var newComment = new Comment(comment.id, comment.text, comment.user_id, comment.trip)
-        var createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-        $("#comments").append(createdComment);
-        $("#submit").prop( "disabled", false )
-        $("#comment_text").val("")
-      });
-}
-
-function Comment(id, text, trip, user){
-  this.id = id
-  this.text = text
-  this.trip = trip
-  this.user = user
-}
-
-Comment.prototype.formatComment = function(){
-    return "<li id='comment-"+ this.id +"'>"  this.text
-  }
-
-function formatCommentList(comments){
-    var commentInfo = ""
-    for (var i = 0; i < comments.length; i++) {
-      let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["trip"]["user_id"],comments[i]["trip"]["name"])
-      commentInfo += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-    }
-    return commentInfo
-  }
 
 $(function() {
-  $(".delete-comment").click(function(event){
-       event.preventDefault()
-       deleteComment(this)
-     })
-   }
+  $("a.load_comments").on("click", function(e) {
+    $.get(this.href, function (comments) {
+      comments.forEach(function(comment) {
+        const oneComment = new Comment(comment)
+        const commentHTML = oneComment.formatComment()
+        $(".comments").append(commentHTML)
+      })
+    });
+    //to prevent multiple renderings on recipe show page
+    $("a.load_comments").attr("href", "");
+    e.preventDefault();
+  })
+})
 
-function deleteComment(element){
-    var commentId = element.attributes["data"].value
-    $.ajax({
-      url: '/comments/' +commentId,
-      type: 'DELETE',
-      success: function(result){
-        $("#comment-"+result["id"]).replaceWith("")
+// JS Constructor - creates an Comment object
+function Comment(comment) {
+  this.id = comment.id
+  this.text = comment.text
+
+}
+// Prototype method
+Comment.prototype.formatComment = function() {
+  commentHTML = `<li data-id=${this.id}>: ${this.text}</li>`
+  return commentHTML
+}
+
+// Submitting Comment via Rails API
+$(function() {
+  $(".new_comment").on("submit", function(e){
+    $.post(this.action, $(this).serialize(), function(comment) {
+      if (Array.isArray(comment)) {
+        var message = "";
+        comment.forEach(function(error) {
+          message += `${error}\n`
+        })
+        alert(message);
+      } else {
+        const $ol = $(".newComment");
+        const newComment = new Comment(comment);
+        const commentHTML = newComment.formatComment();
+        $ol.append(commentHTML);
       }
-    })
-  }
+      // empty fields
+      $("#comment_text").val("");
+    });
+    e.preventDefault();
+  })
+})
