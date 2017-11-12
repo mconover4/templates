@@ -14,34 +14,34 @@
 //})
 
 // JS Constructor - creates an Category object
-function Category(category) {
-  this.id = category.id
-  this.name = category.name
-}
+//function Category(category) {
+//  this.id = category.id
+//  this.name = category.name
+//}
 // Prototype method
-Category.prototype.formatCategory = function() {
-  categoryHTML = `<li data-id=${this.id}>${this.name}</li>`
-  return categoryHTML
-}
+//Category.prototype.formatCategory = function() {
+//  categoryHTML = `<li data-id=${this.id}>${this.name}</li>`
+//  return categoryHTML
+//}
 // Submitting Category via Rails API
-$(function() {
-  $(".new_category").on("submit", function(e){
-    $.post(this.action, $(this).serialize(), function(category) {
-      if (Array.isArray(category)) {
-        var message = "";
-        category.forEach(function(error) {
-          message += `${error}\n`
-        })
-        alert(message);
-      } else {
-        const $ol = $(".newCategory");
-        const newCategory = new Category(category);
-        const categoryHTML = newCategory.formatCategory();
-        $ol.append(categoryHTML);
-      }
+//$(function() {
+//  $(".new_category").on("submit", function(e){
+//    $.post(this.action, $(this).serialize(), function(category) {
+//      if (Array.isArray(category)) {
+//        var message = "";
+//        category.forEach(function(error) {
+//          message += `${error}\n`
+  //      })
+    //    alert(message);
+  //    } else {
+  //      const $ol = $(".newCategory");
+  //      const newCategory = new Category(category);
+  //      const categoryHTML = newCategory.formatCategory();
+  //      $ol.append(categoryHTML);
+  //    }
       // empty fields
-      $("#category_name").val("");
-    });
-    e.preventDefault();
-  })
-})
+//      $("#category_name").val("");
+//    });
+//    e.preventDefault();
+//  })
+//})

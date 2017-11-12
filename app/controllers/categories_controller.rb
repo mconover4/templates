@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
+      render json: @category
       redirect_to categories_path
     else
       render :new

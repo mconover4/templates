@@ -90,3 +90,15 @@ Trip.prototype.renderNext = function() {
   $(".load_categories").attr("href", `/trips/${this.id}/categories`)
   $(".categories").html("")
 }
+
+$(function() {
+    $('.new_category').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/categories', values);
+      posting.done(function(data) {
+        var category = data;
+        $("#categorytName").text(category["name"]);
+      });
+    });
+  });

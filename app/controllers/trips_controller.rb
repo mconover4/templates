@@ -29,12 +29,12 @@ class TripsController < ApplicationController
   end
 
   def show
-    #@newCategory = Category.new(category_params)
-    #@trip.categories << @newCategory
-    respond_to do |f|
-     f.html {render :show}
-     f.json{render json: @trip}
-   end
+    respond_to do |format|
+      @categories = @trip.categories
+      @category = @trip.categories.build
+      format.html { render :show }
+      format.json { render json: @trip }
+	  end
   end
 
   def categories
