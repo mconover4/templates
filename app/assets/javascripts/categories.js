@@ -13,17 +13,16 @@
 //  })
 //})
 
-// JS Constructor - creates an Category object
 //function Category(category) {
 //  this.id = category.id
 //  this.name = category.name
 //}
-// Prototype method
+
 //Category.prototype.formatCategory = function() {
 //  categoryHTML = `<li data-id=${this.id}>${this.name}</li>`
 //  return categoryHTML
 //}
-// Submitting Category via Rails API
+
 //$(function() {
 //  $(".new_category").on("submit", function(e){
 //    $.post(this.action, $(this).serialize(), function(category) {

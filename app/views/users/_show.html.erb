@@ -1,13 +1,3 @@
-<div class="row">
-<button id="more-<%=user.id%>-user" class="js-more" data-id="<%= user.id %>" onclick="showTrips(this)"> Show Trips </button> </br>
+<button id="more-<%=user.id%>-user" class="js-more" data-id="<%= user.id %>" onclick="showTrips(this)"> Show <%= user.name%>'s Trips </button>
+</br>
   <ul id="userShow-<%=user.id%>"> </ul>
-</div>
-<!--<h3> Trips by <%= user.name %></h3>
-<% user.trips.each do |trip| %>
-  <h4><strong>-「<%= link_to trip.name.capitalize, user_trip_path(user, trip) %>」</strong> <em>under:</em>
-    <% trip.categories.each do |category| %>
-      「<%= link_to category.name, trip_category_path(trip, category) if trip.category_ids %>」
-    <% end %>
-  </h4>
-  <% end %>
--->

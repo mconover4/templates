@@ -5,7 +5,7 @@ function showTrips(element){
     var infoList = ""
     for (var i = 0; i < trips.length; i++){
       let tripLink = "/trips/trip[i]['id']"
-      infoList += "<li>" + "<h4>" + "Title:" + " " + "<a href='${tripLink}'>" + trips[i]["name"] + "</a>" + "</h4>" + " " +
+      infoList += "<li>" + "<h4>" + "Trip:" + " " + "<a href='/trips/" + trips[i]["id"] + "'>" + trips[i]["name"] + "</a>" + "</h4>" + " " +
       "<b>" + " Categories:" + "</b>" + " " + trips[i]["categories"][0]["name"] + ", " + trips[i]["categories"][1]["name"] + "<br>" +
       "<b>" + " Content:" + "</b>" + " " + trips[i]["content"] + " " + "</li>"
     }
