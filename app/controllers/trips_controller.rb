@@ -31,9 +31,10 @@ class TripsController < ApplicationController
   def show
     #@comment = Comment.new
     respond_to do |format|
-      @comments = @trip.comments
+      @current_comments = Comment.current_comments
+      @comments = @current_comments
       @comment = @trip.comments.build
-      #@categories = @trip.categories
+      @categories = @trip.categories
       #@category = @trip.categories.build
       #@category.trips_attributes = @trip
       format.html { render :show }

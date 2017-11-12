@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
   def index
     @comments = Comment.all
     render json: @comments
+    @current_comments = Comment.current_comments
   end
 
   private

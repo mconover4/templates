@@ -104,11 +104,10 @@ Trip.prototype.renderNext = function() {
   $(".categories").html("")
 }
 
-
-
 $(function() {
   $("a.load_comments").on("click", function(e) {
-    $.get(this.href, function (comments) {
+    const id = parseInt($(".load_comments").attr("data-id"))
+    $.get("/trips/" + id + "/comments" + '.json', function (comments) {
       comments.forEach(function(comment) {
         const oneComment = new Comment(comment)
         const commentHTML = oneComment.formatComment()
@@ -125,11 +124,11 @@ $(function() {
 function Comment(comment) {
   this.id = comment.id
   this.text = comment.text
-
+  this.trip = comment.trip
 }
 // Prototype method
 Comment.prototype.formatComment = function() {
-  commentHTML = `<li data-id=${this.id}>: ${this.text}</li>`
+  commentHTML = `<li data-id=${this.id}><b>${this.trip.name}:</b> ${this.text}</li>`
   return commentHTML
 }
 
@@ -151,7 +150,11 @@ $(function() {
       }
       // empty fields
       $("#comment_text").val("");
+      $("#submit").html("")
+      //$("#form")[0].reset();
+      //$("#form").unbind("submit");
     });
     e.preventDefault();
-  })
-})
+    $('#form').unbind("submit");
+    })
+ })

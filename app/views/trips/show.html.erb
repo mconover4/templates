@@ -9,7 +9,6 @@
     <!--<button id="more-<%=@trip.id%>-trip" class="js-more" data-id="<%=@trip.id %>" onclick="moreInfo(this)">Show Categories</button> </br>
       <ul id="tripCatShow-<%=@trip.id%>"> </ul> -->
     <ul class="categories"> </ul>
-    <ul class="newCategory"> </ul>
     </header>
 
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
@@ -18,7 +17,8 @@
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
       <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, :class => "delete_trip", data: { confirm: 'Are you sure?' } %></td>
 
-  <%= link_to "See Comments", trip_comments_path(@trip), :class => "load_comments" %><br>
+  <a href="/trips/<%=@trip.id%>/comments" class="load_comments" data-id="<%= @trip.id%>">See Comments</a>
+  <%#= link_to "See Comments", trip_comments_path(@trip), :class => "load_comments" %><br>
     <ul class="comments">
     </ul>
     <ul class="newComment">
@@ -37,7 +37,7 @@
 </div> -->
 
 
-    <%= form_for ([@trip, @comment]) do |f| %>
+    <%= form_for ([@trip, @comment]), :html => {:id => "form"} do |f| %>
       <label>Add a comment:</label>
       <%= f.text_field :text %>
       <span id="trip-field">
