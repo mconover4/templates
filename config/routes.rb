@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :trips
   resources :users
   resources :sessions
+  resources :comments
 
   resources :users, only: [:index, :show] do
     resources :trips, only: [:new, :edit, :show]
