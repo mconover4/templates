@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :must_log_in
 
+  def index
+    @categories = Category.all
+  end
+
   def new
     @category = Category.new
     @categories = Category.all
@@ -9,8 +13,9 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
+      binding.pry
       render json: @category
-      redirect_to categories_path
+      #redirect_to categories_path
     else
       render :new
     end

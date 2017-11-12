@@ -81,7 +81,7 @@ Trip.prototype.renderNext = function() {
   let categoriesNames = parseJson(this.categories);
 
 	$(".tripName").text(this.name)
-	$(".tripCategories").text(categoriesNames)
+	//$(".tripCategories").text(categoriesNames)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
   $(".user_link").attr("href", `/users/${this.user.id}`)
@@ -91,14 +91,14 @@ Trip.prototype.renderNext = function() {
   $(".categories").html("")
 }
 
-$(function() {
-    $('.new_category').submit(function(event) {
-      event.preventDefault();
-      var values = $(this).serialize();
-      var posting = $.post('/trip', values);
-      posting.done(function(data) {
-        var category = data;
-        $("#categorytName").text(category["name"]);
-      });
-    });
-  });
+//$(function() {
+//    $('.new_category').submit(function(event) {
+//      event.preventDefault();
+//      var values = $(this).serialize();
+//      var posting = $.post('/trip', values);
+//      posting.done(function(data) {
+//        var category = data;
+//        $("#categorytName").text(category["name"]);
+//      });
+//    });
+//  });
