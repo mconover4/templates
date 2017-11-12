@@ -4,18 +4,11 @@
 		<header class="major special">
 			<h2>Trip.<%= link_to @trip.name, @trip, :class => "tripName" %></h2>
   		<p>Creator: <%= link_to @trip.user.name, user_path(@trip.user), :class => "tripUser user_link" %></p>
-
-  <a href="/trips/<%=@trip.id%>/categories" class="load_categories" data-id="<%= @trip.id%>">See Categories</a>
-    <!--<button id="more-<%=@trip.id%>-trip" class="js-more" data-id="<%=@trip.id %>" onclick="moreInfo(this)">Show Categories</button> </br>
-      <ul id="tripCatShow-<%=@trip.id%>"> </ul> -->
-    <ul class="categories"> </ul>
-    </header>
-    <ul class="tripCategories">
-      <% @trip.categories.each do |category| %>
-    		<li class="categoryName"> 「<%= category.name %>」</li>
+      <p class="tripCategories">Filed under: <% @trip.categories.each do |category| %>
+        <%= link_to category.name, category_path(category) %> |
       <% end %>
-    </ul>
-
+      </p>
+    </header>
 
 		<a href="#" class="image fit"><img src="https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?w=1500" alt="night city image"></a>
     <p class="tripContent"> <%= @trip.content %> </p>
@@ -25,9 +18,7 @@
     <br>
   <button class="alt"><a href="/trips/<%=@trip.id%>/comments" class="load_comments" data-id="<%= @trip.id%>">See Comments</a></button>
   <%#= link_to "See Comments", trip_comments_path(@trip), :class => "load_comments" %><br>
-    <ul class="newComment comments">
-
-    </ul>
+    <ul class="newComment comments"> </ul>
   <!--
     <div class="comments">
   <h2>Comments:</h2>

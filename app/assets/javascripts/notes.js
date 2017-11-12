@@ -1,52 +1,3 @@
-/* $(document).ready(function(){
-  attachListeners()
-})
-*/
-// Load Categories
-/*
-$(function() {
-  $("a.load_categories").on("click", function(e) {
-    const id = parseInt($(".load_categories").attr("data-id"))
-    $.get("/trips/" + id + "/categories" + '.json', function(data) {
-      var catsList = "<p>"
-      for (var i = 0; i < data.length; i++){
-        catsList += " " + data[i]["name"] + " " + "|"
-      }
-      catsList += "</p>"
-      $(".categories").html(catsList)
-    });
-    $("a.load_categories").attr("href", "");
-    //$(".load_categories").replaceWith(`<a href="#" class="load_categories"
-    // data-id="${this.id}">Hide Categories</a>`)
-    e.preventDefault();
-  })
-})
-
-$(function() {
-  $("a.load_categories").on("click", function(e) {
-    $.get(this.href, function (categories) {
-      categories.forEach(function(category) {
-        const oneCategory = new Category(category)
-        const categoryHTML = oneCategory.formatCategory()
-        $(".categories").append(categoryHTML)
-      })
-    });
-    $("a.load_categories").attr("href", "");
-    e.preventDefault();
-  })
-})
-
-// JS Constructor
-function Category(category) {
-  this.id = category.id
-  this.name = category.name
-}
-
-Category.prototype.formatCategory = function() {
-  categoryHTML = `<li data-id=${this.id}> ${this.name} </li>`
-  return categoryHTML
-}
-*/
 
 // Next Trip
 $(function() {
@@ -82,6 +33,7 @@ Trip.prototype.formatLink = function() {
   return tripHTML
 }
 
+// Trip Categories
 function parseJson(object){
     object.forEach(function(key) {
       console.log(key.name);
@@ -91,22 +43,17 @@ function parseJson(object){
 }
 
 Trip.prototype.renderNext = function() {
-  //let categoriesNames = jQuery.each(this.categories, function(i, val) {
-  //  $("#" + i).append(document.createTextNode(" - " + val));
-//  });
-const categoriesNames = this.categories;
+  const categoriesNames = this.categories;
 function parseJson(categoriesNames){
-  catsList = "<p>"
+  catsList = "Filed under:"
   for (var i = 0; i < categoriesNames.length; i++){
-    catsList += " " + categoriesNames[i]["name"] + " " + "|"
+    catsList += " " + "<a href='/categories/" + categoriesNames[i]["id"] + "'> " + categoriesNames[i]["name"] + "</a>" + " " + "|"
   }
-  catsList += "</p>"
 }
 parseJson(categoriesNames);
-  //categoriesNames += categoriesList
 
 	$(".tripName").text(this.name)
-	$(".tripCategories").html(`<li>${catsList}</li>`)
+	$(".tripCategories").html(`${catsList}`)
 	$(".tripContent").text(this.content)
 	$(".tripUser").text(this.user.name)
   $(".user_link").attr("href", `/users/${this.user.id}`)
