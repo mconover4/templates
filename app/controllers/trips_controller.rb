@@ -40,6 +40,10 @@ class TripsController < ApplicationController
   def categories
     @trip = Trip.find(params[:id])
     @categories = @trip.categories
+    respond_to do |f|
+     f.html {render :show}
+     f.json{render json: @categories}
+   end
   end
 
   def edit

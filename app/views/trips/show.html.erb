@@ -1,6 +1,6 @@
 <section id="main" class="wrapper">
   <div class="container">
-    <button class="js-next" data-id="<%= @trip.id%>">Next Trip</button>
+    <button class="js-next alt" data-id="<%= @trip.id%>">Next Trip</button>
 		<header class="major special">
 			<h2>Trip.<%= link_to @trip.name, @trip, :class => "tripName" %></h2>
       <!--<p>Filed under: <bdi class="tripCategories"><% @trip.categories.each do |category| %>
@@ -9,7 +9,7 @@
       -->
 			<p>Creator: <%= link_to @trip.user.name, user_path(@trip.user), :class => "tripUser user_link" %></p>
     </header>
-  <a href="/trips/<%=@trip.id%>/categories" class="load_categories">See Categories</a>
+  <a href="/trips/<%=@trip.id%>/categories" class="load_categories" data-id="<%= @trip.id%>">See Categories</a>
     <!--<button id="more-<%=@trip.id%>-trip" class="js-more" data-id="<%=@trip.id %>" onclick="moreInfo(this)">Show Categories</button> </br>
       <ul id="tripCatShow-<%=@trip.id%>"> </ul> -->
     <ul class="categories"> </ul>

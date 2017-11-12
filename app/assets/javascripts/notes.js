@@ -14,11 +14,29 @@
 //  $("#more-" + id + "-trip").replaceWith(`<button id="hide-${id}-trip" class="js-hide" data-id="${id}" onClick= hideInfo(this)>Hide</button>`)
 //}
 
-//function hideInfo(element){
+$(function() {
+  $("a.load_categories").on("click", function(e) {
+    const id = parseInt($(".load_categories").attr("data-id"))
+    $.get("/trips/" + id + "/categories" + '.json', function(data) {
+      var catsList = "<p>"
+      for (var i = 0; i < data.length; i++){
+        catsList += " " + data[i]["name"] + " " + "|"
+      }
+      catsList += "</p>"
+      $(".categories").html(catsList)
+    });
+    $("a.load_categories").attr("href", "");
+    //$(".load_categories").replaceWith(`<a href="#" class="load_categories"
+    // data-id="${this.id}" onClick=hideCategories(this)>Hide Categories</a>`)
+    e.preventDefault();
+  })
+})
+
+//function hideCategories(element){
 //  var id = element.dataset.id
-//  $("#tripCatShow-"+id).html("")
-//  $(`#hide-${id}-trip`).replaceWith(`<button id="more-${id}-trip"
-//  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Categories</button>`)
+//  $(".load_categories").html("")
+//  $(".hide_button").replaceWith(`<a href="/trips/${this.id}/categories" class="load_categories"
+//   data-id="${this.id}">See Categories</a>`)
 //}
 
 
@@ -35,7 +53,7 @@ $(function() {
   })
 })
 
-// JS Constructor - creates a Recipe object
+// JS Constructor - create object
 function Trip(attributes) {
   this.id = attributes.id
   this.name = attributes.name
@@ -69,4 +87,6 @@ Trip.prototype.renderNext = function() {
   $(".user_link").attr("href", `/users/${this.user.id}`)
   $(".edit_trip").attr("href", `/trips/${this.id}/edit`)
   $(".delete_trip").attr("href", `/trips/${this.id}`)
+  $(".load_categories").attr("href", `/trips/${this.id}/categories`)
+  $(".categories").html("")
 }
