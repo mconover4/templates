@@ -12,9 +12,10 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.all
+    @trip = Trip.find(params[:trip_id])
+    @comments = @trip.comments
     render json: @comments
-    @current_comments = Comment.current_comments
+    #@current_comments = Comment.current_comments
   end
 
   private

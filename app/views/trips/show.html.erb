@@ -16,7 +16,7 @@
     <% if current_user.id == @trip.user_id || current_user.role == 'admin' %>
       <td><%= link_to "Edit", edit_trip_path(@trip), :class => "edit_trip" %> | <%= link_to 'Delete', @trip, method: :delete, :class => "delete_trip", data: { confirm: 'Are you sure?' } %></td>
     <br>
-  <button class="alt"><a href="/trips/<%=@trip.id%>/comments" class="load_comments" data-id="<%= @trip.id%>">See Comments</a></button>
+  <button class="alt"><a href="#" class="load_comments" data-id="<%= @trip.id%>">See Comments</a></button>
   <%#= link_to "See Comments", trip_comments_path(@trip), :class => "load_comments" %><br>
     <ul class="newComment comments"> </ul>
   <!--
@@ -35,7 +35,7 @@
       <label>Add a comment:</label>
       <%= f.text_field :text %>
       <span id="trip-field">
-        <%= f.hidden_field :trip_id, value: @trip.id %>
+        <%= f.hidden_field :trip_id, value: @trip.id, :id => 'tripId' %>
       </span>
       <br>
       <%= f.submit "Submit", :data => { disable_with: false }, :class => "new_comment" %>

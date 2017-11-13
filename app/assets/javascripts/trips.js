@@ -59,10 +59,13 @@ parseJson(categoriesNames);
   $(".user_link").attr("href", `/users/${this.user.id}`)
   $(".edit_trip").attr("href", `/trips/${this.id}/edit`)
   $(".delete_trip").attr("href", `/trips/${this.id}`)
-  $(".load_comments").attr("href", `/trips/${this.id}/comments`)
+  $(".load_comments").attr("data-id", this.id)
   $(".comments").html("")
   $(".load_categories").attr("href", `/trips/${this.id}/categories`)
   $(".categories").html("")
+  $("#form").attr("action", `/trips/${this.id}/comments`)
+  $("#tripId").val(this.id)
+
 }
 
 // Load Comments
