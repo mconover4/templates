@@ -29,13 +29,8 @@ class TripsController < ApplicationController
   end
 
   def show
-    #@comment = Comment.new
     respond_to do |format|
-      @current_comments = Comment.current_comments
-      @comments = @current_comments
       @comment = @trip.comments.build
-      #@category = @trip.categories.build
-      #@category.trips_attributes = @trip
       format.html { render :show }
       format.json { render json: @trip }
 	  end
@@ -74,21 +69,16 @@ class TripsController < ApplicationController
    end
 
   private
+    def trip_params
+      params.require(:trip).permit(:id, :name, :content, :user_id, category_ids:[], categories_attributes: [:name])
+    end
 
-  def trip_params
-    params.require(:trip).permit(:id, :name, :content, :user_id, category_ids:[], categories_attributes: [:name])
-  end
+    def set_trip
+      @trip = Trip.find(params[:id])
+    end
 
-  def set_trip
-    @trip = Trip.find(params[:id])
-  end
-
-  def require_planner
-     return head(:forbidden) unless current_user.role == 'planner' || current_user.role == 'admin'
-   end
-
-   def category_params
-     params.require(:category).permit(:id, :name)
-   end
+    def require_planner
+       return head(:forbidden) unless current_user.role == 'planner' || current_user.role == 'admin'
+    end
 
 end

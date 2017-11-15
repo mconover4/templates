@@ -72,17 +72,16 @@ class UsersController < ApplicationController
 	end
 
   private
+    def user_params
+      params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :personality, :reason, :international, :companion, :budget, :role)
+    end
 
-  def user_params
-    params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :personality, :reason, :international, :companion, :budget, :role)
-  end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def authorize_user
-    return head(:forbidden) unless @user.id == current_user.id || current_user.is_admin?
-  end
+    def authorize_user
+      return head(:forbidden) unless @user.id == current_user.id || current_user.is_admin?
+    end
 
 end

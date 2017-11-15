@@ -1,3 +1,4 @@
+// Show User Trips
 function showTrips(element){
   var id = element.dataset.id
   $.get('/users/' + id + '/trips' +'.json', function(data){
@@ -14,6 +15,7 @@ function showTrips(element){
   $("#more-" + id + "-user").replaceWith(`<button id="hide-${id}-user" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Trips</button>`)
 }
 
+// Hide Trips
 function hideInfo(element){
   var id = element.dataset.id
   $("#userShow-"+id).html("")

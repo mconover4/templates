@@ -7,7 +7,7 @@ Specs:
 - [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
   In Users/show, you can click "show trips" to render all user trips (and you can hide them)
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
-  In Trips/Show, you can click on "show categories" and "show comments" to see them, also in Users/show for the user trips
+  In Trips/Show, you can see its categories (with a many-to-many relationship) and you can click "show comments" to load them, also in Users/show for the user trips
 - [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
   in Trips/show, you can create a comment and see it without the page refreshing
 - [x] Translate JSON responses into js model objects.

@@ -4,9 +4,4 @@ class TripSerializer < ActiveModel::Serializer
   has_many :categories, :through => :trip_categories
   has_many :comments
 
-
-  private
-    #def comments
-    #  CommentSerializer.new(object.comments).attributes
-    #end
 end

@@ -15,13 +15,11 @@ class CommentsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @comments = @trip.comments
     render json: @comments
-    #@current_comments = Comment.current_comments
   end
 
   private
-  def comments_params
-    params.require(:comment).permit(:text, :trip_id, :user_id)
-  end
-
+    def comments_params
+      params.require(:comment).permit(:text, :trip_id, :user_id)
+    end
 
 end

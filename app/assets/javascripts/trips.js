@@ -1,4 +1,3 @@
-
 // Next Trip
 $(function() {
   $('.js-next').on('click', function() {
@@ -42,15 +41,17 @@ function parseJson(object){
     });
 }
 
+// Trip Render Next
 Trip.prototype.renderNext = function() {
   const categoriesNames = this.categories;
-function parseJson(categoriesNames){
-  catsList = "Filed under:"
-  for (var i = 0; i < categoriesNames.length; i++){
-    catsList += " " + "<a href='/categories/" + categoriesNames[i]["id"] + "'> " + categoriesNames[i]["name"] + "</a>" + " " + "|"
+
+  function parseJson(categoriesNames){
+    catsList = "Filed under:"
+    for (var i = 0; i < categoriesNames.length; i++){
+      catsList += " " + "<a href='/categories/" + categoriesNames[i]["id"] + "'> " + categoriesNames[i]["name"] + "</a>" + " " + "|"
+    }
   }
-}
-parseJson(categoriesNames);
+  parseJson(categoriesNames);
 
 	$(".tripName").text(this.name)
 	$(".tripCategories").html(`${catsList}`)
@@ -65,7 +66,6 @@ parseJson(categoriesNames);
   $(".categories").html("")
   $("#form").attr("action", `/trips/${this.id}/comments`)
   $("#tripId").val(this.id)
-
 }
 
 // Load Comments
@@ -80,20 +80,9 @@ $(function() {
       })
     });
     $("a.load_comments").attr("href", "");
-    $(".load_comments").replaceWith(`<a href="#" class="load_comments"
-     data-id="${this.id}" onClick=hideComments(this)>Hide Comments</a>`)
     e.preventDefault();
   })
 })
-
-/*
-function hideComments(element){
-  var id = element.dataset.id
-  $(".load_comments").html("")
-  $(".hide_button").replaceWith(`<a href="/trips/${this.id}/comments" class="load_comments"
-   data-id="${this.id}">See Comments</a>`)
-}
-*/
 
 // JS Constructor - Comment
 function Comment(comment) {
@@ -101,9 +90,10 @@ function Comment(comment) {
   this.text = comment.text
   this.trip = comment.trip
 }
+
 // Prototype method
 Comment.prototype.formatComment = function() {
-  commentHTML = `<li data-id=${this.id}><b>${this.trip.name}:</b> ${this.text} </li>`
+  commentHTML = `<li data-id=${this.id}><b>On ${this.trip.name}:</b> ${this.text} </li>`
   return commentHTML
 }
 
@@ -128,19 +118,3 @@ $(function() {
     e.preventDefault();
     })
  })
-
-/*
- $(function() {
-   $(".delete_comment").on("click", function(e){
-   var commentId = element.attributes["data"].value
-  $.ajax({
-    url: '/comments/' +commentId,
-    type: 'DELETE',
-    success: function(result){
-      $("#comment-"+result["id"]).replaceWith("")
-    }
-  })
-  e.preventDefault();
-})
-})
-*/
