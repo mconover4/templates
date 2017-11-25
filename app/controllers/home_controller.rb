@@ -4,9 +4,7 @@ class HomeController < ApplicationController
   end
 
   def main
-    unless logged_in?
-      redirect_to '/'
-    end
+    
   end
 
   def sample

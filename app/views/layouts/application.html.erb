@@ -5,11 +5,10 @@
     <title>PlanMe</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rails Bootstrap" %></title>
+
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'rails.validations', 'data-turbolinks-track': 'reload' %>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,21 +19,9 @@
 
   </head>
   <body class="landing">
-    <% if current_page?(root_path) %>
-        <%= render 'home/header' %>
-    <% else %>
-        <%= render 'layouts/header' %>
-    <% end %>
 
-  <% if flash[:notice] || flash[:error] || flash[:alert]%>
-    <div class="alert alert-success alert-dismissable"><br>
-      <% if flash[:error] %><div id="flash_error" class="errors"><%= flash[:error]%><a href="#" class="close" data-dismiss="alert"> [x]</a></div><% end %>
-      <% if flash[:notice] %><div id="flash_notice" class="errors"><%= flash[:notice]%><a href="#" class="close" data-dismiss="alert"> [x]</a></div><% end %>
-      <% if flash[:alert] %><div id="flash_alert" class="errors"><%= flash[:alert]%><a href="#" class="close" data-dismiss="alert"> [x]</a></div><% end %>
-    </div>
-  <% end %>
-
-<%= yield %>
+    <%= render 'home/header' %>
+    <%= yield %>
 
 <!-- Footer -->
 <footer id="footer">
@@ -52,50 +39,6 @@
   <script src="assets/js/skel.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>-->
-<!-- Script for validations  -->
-      <script>
-          var createAllErrors = function() {
-              var form = $( this ),
-                  errorList = $( "ul.errorMessages", form );
 
-              var showAllErrorMessages = function() {
-                  errorList.empty();
-
-                  // Find all invalid fields within the form.
-                  var invalidFields = form.find( ":invalid" ).each( function( index, node ) {
-
-                      // Find the field's corresponding label
-                      var label = $( "label[for=" + node.id + "] "),
-                          // Opera incorrectly does not fill the validationMessage property.
-                          message = node.validationMessage || 'Invalid value.';
-
-                      errorList
-                          .show()
-                          .append( "<li><span>" + label.html() + "</span> " + message + "</li>" );
-                  });
-              };
-
-              // Support Safari
-              form.on( "submit", function( event ) {
-                  if ( this.checkValidity && !this.checkValidity() ) {
-                      $( this ).find( ":invalid" ).first().focus();
-                      event.preventDefault();
-                  }
-              });
-
-              $( "input[type=submit], button:not([type=button])", form )
-                  .on( "click", showAllErrorMessages);
-
-              $( "input", form ).on( "keypress", function( event ) {
-                  var type = $( this ).attr( "type" );
-                  if ( /date|email|month|number|search|tel|text|time|url|week/.test ( type )
-                    && event.keyCode == 13 ) {
-                      showAllErrorMessages();
-                  }
-              });
-          };
-
-          $( "form" ).each( createAllErrors );
-      </script>
   </body>
 </html>

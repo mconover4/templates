@@ -1,5 +1,7 @@
 @import url(font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url("https://fonts.googleapis.com/css?family=Lobster|Open+Sans:300,400,600,700,800");
+
 
 /*
 	Spatial by TEMPLATED
@@ -1868,18 +1870,17 @@
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		background-color: #181c38;
-		border-radius: 4px;
+		border-radius: 20px;
 		color: #ffffff !important;
-		border: 0;
+		border: 1px;
 		cursor: pointer;
 		display: inline-block;
-		font-weight: 700;
+		font-weight: 1.5em;
 		height: 3.15em;
 		line-height: 3.25em;
 		padding: 0 2.2em;
 		text-align: center;
 		text-decoration: none;
-		text-transform: uppercase;
 		white-space: nowrap;
 	}
 
@@ -2796,13 +2797,25 @@
 			width: 60em;
 		}
 
+		.wrapper.style1 {
+			background-color: #f6f6f6;
+			background-attachment: fixed;
+			background-image: url("https://i.imgur.com/4AryOW7.png"), url('https://images.unsplash.com/photo-1501194165698-ddaabcec8b6a?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
+			background-position: center center;
+			background-size: cover;
+		}
+
 		.wrapper.style2 {
 			background-color: #f6f6f6;
+			background-attachment: fixed;
+			background-image: url("https://i.imgur.com/4AryOW7.png"), url('https://images.unsplash.com/photo-1493704135368-900998236d80?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
+			background-position: center center;
+			background-size: cover;
 		}
 
 		.wrapper.style3 {
 			background-attachment: fixed;
-			background-image: url("https://i.imgur.com/4AryOW7.png"), url("https://images.unsplash.com/photo-1474905187624-b3deaf7aa4c2?w=750");
+			background-image: url("https://i.imgur.com/4AryOW7.png"), url('https://images.unsplash.com/photo-1493113689960-23f807b7c238?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
 			background-position: center center;
 			background-size: cover;
 		}
@@ -3158,23 +3171,27 @@
 	#banner {
 		padding: 16em 0 13em 0;
 		background-attachment: fixed;
-		background-image: url("https://i.imgur.com/4AryOW7.png"), url("https://c1.staticflickr.com/9/8386/8574028135_f9eed1f8a5_b.jpg");
+		background-image: url("https://i.imgur.com/4AryOW7.png"), url('https://images.unsplash.com/photo-1493704074932-e1c9d6ccd131?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
 		background-position: center top;
 		background-size: cover;
 		line-height: 1.75;
 		text-align: center;
+		height: 100% !important;
 	}
 
 		#banner:last-child {
 			margin-bottom: 0;
 		}
 
-		#banner h2 {
-			color: #ffffff;
+		#banner h1 {
+			color: rgba(255, 255, 255, 0.75);
 			display: inline-block;
-			font-size: 3.5em;
-			line-height: 1.35;
-			margin-bottom: 0.5em;
+			font-family: "Lobster", cursive;
+			font-size: 7em;
+			line-height: 1.1;
+			margin-bottom: 0.25em;
+			text-shadow: -2px -2px 0 rgba(0, 0, 0, 0.125);
+			text-transform: none;
 		}
 
 		#banner p {
