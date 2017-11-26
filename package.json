@@ -1,12 +1,13 @@
 {
-  "name": "plan-me",
+  "name": "y",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7"
   },
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/msickler/templates.git",
+  "version": "y",
+  "main": "y",
+  "repository": "y",
   "author": "y",
-  "license": "y"
+  "license": "y",
+  "description": "y"
 }
