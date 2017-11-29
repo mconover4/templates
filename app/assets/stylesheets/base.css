@@ -2908,7 +2908,7 @@
 		height: 4.5em;
 		left: 0;
 		line-height: 4.4em;
-		position: absolute;
+		position: fixed;
 		text-transform: uppercase;
 		top: 0;
 		width: 100%;
@@ -2999,7 +2999,7 @@
 			box-shadow: none;
 			height: 3em;
 			line-height: 2em;
-			position: fixed;
+			position: absolute;
 		}
 
 			#header.alt h1 {
