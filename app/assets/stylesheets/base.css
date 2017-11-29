@@ -2908,7 +2908,7 @@
 		height: 4.5em;
 		left: 0;
 		line-height: 4.4em;
-		position: fixed;
+		position: absolute;
 		text-transform: uppercase;
 		top: 0;
 		width: 100%;
